@@ -22,7 +22,7 @@ export const signin = async (req, res) => {
     // const password=parseInput.data.password
     const user=await Admin.findOne({username,password})
     if(user){
-        res.status(403).json({msg:"Admin Alredy Regesterd"})
+        res.status(200).json({msg:"Admin Alredy Regesterd"})
     }
     const newUser=await new Admin({username,password})
     await newUser.save()
@@ -47,3 +47,26 @@ export const login = async (req, res) => {
         res.status(400).json({error:"Unable to login admin"})
     }
 };
+
+export const logout=async (req,res)=>{
+  try {
+    await Admin.findByIdAndDelete()
+    res.status(200).json({msg:"Succesfully Logout"})
+    
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({error:"Unsuccesfull in loging out the user"})
+
+    
+  }
+}
+
+export const clear_admin=async (req,res)=>{
+  try {
+    await Admin.deleteMany()
+    res.status(200).json({msg:"Every User in The Data base is Delted"})
+  } catch (error) {
+    console.log(error)
+    res.status(400).json({error:"error in deliting User from the db"}) 
+  }
+}
