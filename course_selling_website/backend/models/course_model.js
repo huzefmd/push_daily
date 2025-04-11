@@ -1,11 +1,12 @@
 import mongoose  from "mongoose"
+const ObjectId = mongoose.Types.ObjectId;
 
 const Course_scema = new mongoose.Schema({
     title:{type:String},
     description:{type:String},
     price:{type:Number},
-    imageLink:{type:String},
-    published:{type:Boolean},
+    imageUrl:{type:String},
+    creatorId:{type:ObjectId},
 })
 
 

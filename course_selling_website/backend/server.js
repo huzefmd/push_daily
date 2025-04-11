@@ -5,6 +5,9 @@ import mongoose from"mongoose"
 import cors from "cors"
 
 import admin_route  from "../backend/routes/admin_routes.js"
+import user_route from "../backend/routes/user_routes.js"
+import course_route from "../backend/routes/course_routes.js"
+import Purchase from "../backend/models/purchase_model.js"
 dotenv.config()
 
 const db_uri=process.env.MONGO_URI
@@ -23,6 +26,10 @@ try {
 
 
 app.use('/admin',admin_route)
+app.use('/user',user_route)
+app.use('/course',course_route)
+
+    
 app.listen(3001,()=>{
     console.log("Server is running on port 3001")
 })
